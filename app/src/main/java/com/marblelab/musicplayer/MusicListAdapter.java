@@ -1,7 +1,11 @@
 package com.marblelab.musicplayer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +50,7 @@ public class MusicListAdapter extends BaseAdapter {
 
         view = LayoutInflater.from(context).inflate(R.layout.music_list_adapter, null, true);
 
-        TextView mTitle = (TextView) view.findViewById(R.id.tvTitle);
+        final TextView mTitle = (TextView) view.findViewById(R.id.tvTitle);
         TextView mAlbum = (TextView) view.findViewById(R.id.tvAlbum);
         TextView mDuration = (TextView) view.findViewById(R.id.tvDuration);
         CardView mMusicCard = (CardView) view.findViewById(R.id.cvMusicCard);
@@ -56,6 +60,7 @@ public class MusicListAdapter extends BaseAdapter {
         mAlbum.setText(song.getArtist());
         mDuration.setText(String.valueOf(song.getDuration()) + " min");
         mMusicCard.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
                 getItemId(i);
@@ -64,9 +69,10 @@ public class MusicListAdapter extends BaseAdapter {
                     PlayerActivity.playStatus = false;
                 }
                 Intent intent = new Intent(context, PlayerActivity.class);
+                ActivityOptionsCompat activityOptionsCompat=ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context,mTitle,"title");
                 intent.putExtra("path", song.getSongPath());
                 intent.putExtra("index", index);
-                context.startActivity(intent);
+                context.startActivity(intent,activityOptionsCompat.toBundle());
             }
         });
         return view;

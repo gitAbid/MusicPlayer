@@ -38,6 +38,7 @@
                     android:gravity="left|top"
                     android:paddingTop="10dp"
                     android:text="Title"
+                    android:transitionName="title"
                     android:textSize="15dp" />
 
                 <RelativeLayout
@@ -58,7 +59,8 @@
                         android:fontFamily="sans-serif-smallcaps"
                         android:gravity="left"
                         android:text="Album"
-                        android:textSize="10dp" />
+                        android:textSize="10dp"
+                        android:transitionName="album"/>
 
                     <TextView
                         android:id="@+id/tvDuration"

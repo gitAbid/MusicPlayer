@@ -37,6 +37,7 @@
                 android:fontFamily="sans-serif-smallcaps"
                 android:gravity="center"
                 android:text="Music"
+                android:transitionName="title"
                 android:textSize="20dp" />
 
             <ImageView
@@ -75,7 +76,8 @@
                     android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif-smallcaps"
                     android:gravity="center"
-                    android:text="Album" />
+                    android:text="Album"
+                    android:transitionName="album"/>
 
                 <TextView
                     android:id="@+id/tvDuration"
